@@ -14,7 +14,10 @@ public class BoardItem {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    @Column(name = "x", updatable = false, nullable = false)
     private double x;
+
+    @Column(name = "y", updatable = false, nullable = false)
     private double y;
 
 

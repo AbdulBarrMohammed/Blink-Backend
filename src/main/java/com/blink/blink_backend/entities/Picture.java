@@ -17,13 +17,17 @@ public class Picture {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(name = "source_link")
+    // Source link can be optional
+    @Column(name = "source_link", nullable = true)
     private String sourceLink;
 
     @Column(name = "captured_at", nullable = false)
     private LocalDateTime capturedAt;
 
-    //user id
+
     //Many pictures belonging to one user
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

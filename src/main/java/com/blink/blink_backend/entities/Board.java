@@ -23,8 +23,10 @@ public class Board {
     @OneToMany(mappedBy = "Board", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<BoardItem> boardItems;
 
-    //User id
     // Many boards belonging to one user
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 
