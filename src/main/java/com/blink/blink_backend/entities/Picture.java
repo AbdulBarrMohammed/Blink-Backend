@@ -3,6 +3,7 @@ package com.blink.blink_backend.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -30,4 +31,77 @@ public class Picture {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Picture() {
+    }
+
+    public Picture(LocalDateTime capturedAt, UUID id, String imageUrl, String sourceLink, User user) {
+        this.capturedAt = capturedAt;
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.sourceLink = sourceLink;
+        this.user = user;
+    }
+
+    public LocalDateTime getCapturedAt() {
+        return capturedAt;
+    }
+
+    public void setCapturedAt(LocalDateTime capturedAt) {
+        this.capturedAt = capturedAt;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getSourceLink() {
+        return sourceLink;
+    }
+
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Picture picture = (Picture) o;
+        return Objects.equals(id, picture.id) && Objects.equals(imageUrl, picture.imageUrl) && Objects.equals(sourceLink, picture.sourceLink) && Objects.equals(capturedAt, picture.capturedAt) && Objects.equals(user, picture.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imageUrl, sourceLink, capturedAt, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "id=" + id +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", sourceLink='" + sourceLink + '\'' +
+                ", capturedAt=" + capturedAt +
+                ", user=" + user +
+                '}';
+    }
 }
