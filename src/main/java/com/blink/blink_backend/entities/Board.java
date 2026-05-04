@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Boards")
+@Table(name = "Board")
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,7 +21,7 @@ public class Board {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "Board", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "board", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<BoardItem> boardItems;
 
     // Many boards belonging to one user

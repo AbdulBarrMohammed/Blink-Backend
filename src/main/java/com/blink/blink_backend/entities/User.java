@@ -23,10 +23,10 @@ public class User {
 
 
 
-    @OneToMany(mappedBy = "User", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Board> boards;
 
-    @OneToMany(mappedBy = "User", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Picture> pictures;
 
     public User() {
