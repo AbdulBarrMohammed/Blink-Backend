@@ -35,9 +35,9 @@ public class Picture {
     public Picture() {
     }
 
-    public Picture(LocalDateTime capturedAt, UUID id, String imageUrl, String sourceLink, User user) {
-        this.capturedAt = capturedAt;
+    public Picture(UUID id, LocalDateTime capturedAt, String imageUrl, String sourceLink, User user) {
         this.id = id;
+        this.capturedAt = capturedAt;
         this.imageUrl = imageUrl;
         this.sourceLink = sourceLink;
         this.user = user;
