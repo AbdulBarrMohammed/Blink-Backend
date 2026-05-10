@@ -7,6 +7,7 @@ import com.blink.blink_backend.services.BoardItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -40,5 +41,33 @@ public class BoardItemController {
 
         return boardItemMapper.toDto(createdBoardItem); // map board item entity back to board item dto
 
+    }
+
+    @GetMapping(path = "/{board_item_id}")
+    public Optional<BoardItemDto> getBoardItem(
+            @PathVariable("board_id") UUID boardId,
+            @PathVariable("board_item_id") UUID boardItemId
+    ) {
+        return boardItemService.getBoardItem(boardId, boardItemId).map(boardItemMapper::toDto);
+    }
+
+    @PutMapping(path = "/{board_item_id}")
+    public BoardItemDto updateBoardItem(
+            @PathVariable("board_id") UUID boardId,
+            @PathVariable("board_item_id") UUID boardItemId,
+            @RequestBody BoardItemDto boardItemDto
+    ) {
+        BoardItem updatedBoardItem = boardItemService.updateBoardItem(boardId, boardItemId, boardItemMapper.fromDto(boardItemDto));
+
+        return boardItemMapper.toDto(updatedBoardItem);
+    }
+
+    @DeleteMapping(path = "/{board_item_id}")
+    public void deleteBoardItem(
+            @PathVariable("board_id") UUID boardId,
+            @PathVariable("board_item_id") UUID boardItemId
+
+    ) {
+        boardItemService.deleteBoardItem(boardId, boardItemId);
     }
 }

@@ -8,6 +8,8 @@ import com.blink.blink_backend.services.BoardItemService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -52,6 +54,38 @@ public class BoardItemServiceImpl implements BoardItemService {
         );
 
         return boardItemRepository.save(boardItemToSave);
+    }
+
+    @Override
+    public Optional<BoardItem> getBoardItem(UUID boardId, UUID boardItemId) {
+        return boardItemRepository.findByBoardIdAndId(boardId, boardItemId);
+    }
+
+    @Override
+    public BoardItem updateBoardItem(UUID boardId, UUID boardItemId, BoardItem boardItem) {
+        if (boardItem.getId() == null) {
+            throw new IllegalArgumentException("Board item must have an ID");
+        }
+
+        if (!Objects.equals(boardItemId, boardItem.getId())) {
+            throw new IllegalArgumentException("Board item IDs do not match");
+        }
+
+        if (boardItem.getX() == 0.0 || boardItem.getY() == 0.0) {
+            throw new IllegalArgumentException("X and Y values must have values");
+        }
+
+        BoardItem existingBoardItem = boardItemRepository.findByBoardIdAndId(boardId, boardItemId).orElseThrow(() -> new IllegalArgumentException("Board item not found"));
+        existingBoardItem.setX(boardItem.getX());
+        existingBoardItem.setY(boardItem.getY());
+
+        return boardItemRepository.save(existingBoardItem);
+
+    }
+
+    @Override
+    public void deleteBoardItem(UUID boardId, UUID boardItemId) {
+        boardItemRepository.deleteByBoardIdAndId(boardId, boardItemId);
     }
 
 }
