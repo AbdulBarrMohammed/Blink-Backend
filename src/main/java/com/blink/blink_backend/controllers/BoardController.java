@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+// This is the controller that handles incoming HTTP requests and communicates directly to the client
 @RestController
 @RequestMapping(path = "/board")
 public class BoardController {

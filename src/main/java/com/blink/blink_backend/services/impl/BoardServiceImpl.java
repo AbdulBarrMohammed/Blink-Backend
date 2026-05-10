@@ -11,6 +11,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+// This is the service, it is the brain of the backend that decides what should happen
+// and coordinates the work between the controller and repository.
 @Service
 public class BoardServiceImpl implements BoardService {
 

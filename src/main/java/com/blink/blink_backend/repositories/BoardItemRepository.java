@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+// This is the repository, its job is to talk to the database
 public interface BoardItemRepository extends JpaRepository<BoardItem, UUID> {
     List<BoardItem> findByBoardId(UUID boardId);
     Optional<Board> findByBoardIdAndId(UUID boardId, UUID id);
