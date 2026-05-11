@@ -2,8 +2,10 @@ package com.blink.blink_backend.services.impl;
 
 import com.blink.blink_backend.entities.Board;
 import com.blink.blink_backend.entities.BoardItem;
+import com.blink.blink_backend.entities.Picture;
 import com.blink.blink_backend.repositories.BoardItemRepository;
 import com.blink.blink_backend.repositories.BoardRepository;
+import com.blink.blink_backend.repositories.PictureRepository;
 import com.blink.blink_backend.services.BoardItemService;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,12 @@ public class BoardItemServiceImpl implements BoardItemService {
 
     private final BoardItemRepository boardItemRepository;
     private final BoardRepository boardRepository;
+    private final PictureRepository pictureRepository;
 
-    public BoardItemServiceImpl(BoardItemRepository boardItemRepository, BoardRepository boardRepository) {
+    public BoardItemServiceImpl(BoardItemRepository boardItemRepository, BoardRepository boardRepository, PictureRepository pictureRepository) {
         this.boardItemRepository = boardItemRepository;
         this.boardRepository = boardRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -30,7 +34,7 @@ public class BoardItemServiceImpl implements BoardItemService {
     }
 
     @Override
-    public BoardItem createBoardItem(UUID boardId, BoardItem boardItem) {
+    public BoardItem createBoardItem(UUID boardId, UUID pictureId, BoardItem boardItem) { // Add pictureId
         if (boardItem.getId() != null) {
             throw new IllegalArgumentException("Board Item already has an ID");
         }
@@ -44,12 +48,15 @@ public class BoardItemServiceImpl implements BoardItemService {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Board ID provided"));
 
+        // Grab the picture to be used for a board item by the provided picture id
+        Picture picture = pictureRepository.findById(pictureId).orElseThrow(() -> new IllegalArgumentException("Invalid Picture ID provided"));
+
         BoardItem boardItemToSave = new BoardItem(
                 boardItem.getY(),
                 boardItem.getId(),
                 boardItem.getX(),
                 board,
-                null // This will be future picture object
+                picture // This will be future picture object
 
         );
 

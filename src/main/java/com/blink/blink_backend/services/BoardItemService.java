@@ -10,7 +10,7 @@ public interface BoardItemService {
 
     // Gets id of board that boarditems belong too
     List<BoardItem> listBoardItems(UUID boardId);
-    BoardItem createBoardItem(UUID boardId, BoardItem boardItem);
+    BoardItem createBoardItem(UUID boardId, UUID pictureId, BoardItem boardItem);
     Optional<BoardItem> getBoardItem(UUID boardId, UUID boardItemId); // returning Optional because the board item might not exist
 
     BoardItem updateBoardItem(UUID boardId, UUID boardItemId, BoardItem boardItem);

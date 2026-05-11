@@ -32,10 +32,12 @@ public class BoardItemController {
 
     @PostMapping
     public BoardItemDto createBoardItem(@PathVariable("board_id") UUID boardId,
+                                        @PathVariable("picture_id") UUID pictureId,
                                         @RequestBody BoardItemDto boardItemDto) {
         // Create new Board item using board item service
         BoardItem createdBoardItem = boardItemService.createBoardItem(
                 boardId,
+                pictureId,
                 boardItemMapper.fromDto(boardItemDto) // map board item dto to board item entity
         );
 
