@@ -12,7 +12,7 @@ import java.util.UUID;
 
 // This is the controller that handles incoming HTTP requests and communicates directly to the client
 @RestController
-@RequestMapping(path = "/board")
+@RequestMapping(path = "user/{user_id}/board")
 public class BoardController {
 
     private final BoardService boardService;
