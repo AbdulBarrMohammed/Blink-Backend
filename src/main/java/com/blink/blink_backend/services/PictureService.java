@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface PictureService {
     List<Picture> listPicture();
-    Picture createPicture(Picture picture);
+    Picture createPicture(Picture picture, UUID userId);
     Optional<Picture> getPicture(UUID id);
     //Picture updatePicture(UUID pictureId, Picture picture);
     void deletePicture(UUID pictureId);

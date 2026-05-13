@@ -43,7 +43,7 @@ public class BoardServiceImpl implements BoardService {
                 new Board(
 
                         now,
-                        null,
+                        board.getId(),
                         board.getTitle(),
                         null,
                         null
