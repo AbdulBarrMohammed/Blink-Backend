@@ -54,11 +54,11 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public Optional<Picture> getPicture(UUID id) {
-        return Optional.empty();
+        return pictureRepository.findById(id);
     }
 
     @Override
     public void deletePicture(UUID pictureId) {
-
+            pictureRepository.deleteById(pictureId);
     }
 }
