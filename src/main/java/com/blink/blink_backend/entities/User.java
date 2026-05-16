@@ -22,10 +22,11 @@ public class User {
     private String password;
 
 
-
+    // One user has many boards
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Board> boards;
 
+    // One user has many pictures
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Picture> pictures;
 

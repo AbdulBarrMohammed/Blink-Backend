@@ -21,6 +21,7 @@ public class Board {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    // One board has many board items
     @OneToMany(mappedBy = "board", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<BoardItem> boardItems;
 
