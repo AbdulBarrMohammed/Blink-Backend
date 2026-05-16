@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BoardService {
-    List<Board> listBoard();
+    List<Board> listBoards(UUID userId);
     Board createBoard(UUID userId, Board board);
     Optional<Board> getBoard(UUID userId, UUID id);
     Board updateBoard(UUID userId, UUID boardId, Board board);
