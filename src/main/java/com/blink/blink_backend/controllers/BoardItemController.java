@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/board/{board_id}/board_item")
+@RequestMapping(path = "/board/{board_id}/board_items")
 public class BoardItemController {
 
     private final BoardItemService boardItemService;
@@ -30,7 +30,7 @@ public class BoardItemController {
                 .toList();
     }
 
-    @PostMapping
+    @PostMapping("picture_id")
     public BoardItemDto createBoardItem(@PathVariable("board_id") UUID boardId,
                                         @PathVariable("picture_id") UUID pictureId,
                                         @RequestBody BoardItemDto boardItemDto) {

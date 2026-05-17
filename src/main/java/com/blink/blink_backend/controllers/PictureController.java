@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/picture")
+@RequestMapping(path = "user/{user_id}/pictures")
 public class PictureController {
 
     private final PictureService pictureService;
