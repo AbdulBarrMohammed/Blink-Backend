@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/board/{board_id}/board_items")
+@RequestMapping(path = "user/{user_id}/board/{board_id}/board_items")
 public class BoardItemController {
 
     private final BoardItemService boardItemService;
